@@ -1,0 +1,1401 @@
+/**
+ * ADMIN MAIN CSS
+ * File CSS utama untuk semua halaman admin
+ */
+
+/* -----------------------------------------------------
+   VARIABLES
+   ----------------------------------------------------- */
+:root {
+    --primary: #0F4C81;
+    --primary-hover: #0d4373;
+    --primary-dark: #0c3d6a;
+    --primary-light: #2c7ac0;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --warning-light: #fef3c7;
+    --warning-dark: #92400e;
+    --success: #10b981;
+    --success-light: #22c55e;
+    --success-dark: #16a34a;
+    --button-hover: #f3f4f6;
+    --background: #f8fafc;
+    --white: #ffffff;
+    --text-dark: #1f2937;
+    --text-gray: #4b5563;
+    --text-light: #9ca3af;
+    --border-light: #e5e7eb;
+    --border-radius: 0.5rem;
+    --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --box-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --box-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --transition: all 0.2s ease;
+    --navbar-height: 4rem;
+    --navbar-height-mobile: 3.5rem;
+    --sidebar-width: 320px; /* Memperbesar dari 280px menjadi 320px */
+    --sidebar-width-collapsed: 80px;
+    --card-bg: #ffffff;
+    --secondary: #6b7280;
+    --bg-color: #f9fafb;
+    --sidebar-hover: #fef3c7; /* kuning halus untuk hover */
+    --sidebar-active: #f59e0b; /* kuning untuk active */
+    --sidebar-active-bg: #fffbeb; /* background kuning sangat halus untuk active */
+}
+
+/* -----------------------------------------------------
+   BASE
+   ----------------------------------------------------- */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden; /* Mencegah scrollbar horizontal di seluruh halaman */
+    max-width: 100vw; /* Memastikan tidak ada konten yang melebihi viewport width */
+}
+
+body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--background);
+    color: var(--text-dark);
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
+/* -----------------------------------------------------
+   ADMIN LAYOUT - Sidebar, Navbar, Content
+   ----------------------------------------------------- */
+.admin-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 100vw;
+    position: relative;
+    overflow-x: hidden; /* Mencegah scrollbar horizontal di container */
+}
+
+/* Sidebar */
+.sidebar {
+    width: var(--sidebar-width);
+    background: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary) 100%);
+    color: var(--white);
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    overflow-x: hidden; /* Mencegah scroll horizontal */
+    z-index: 100;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    box-sizing: border-box; /* Memastikan padding/border tidak menambah ukuran */
+}
+
+.sidebar-header {
+    padding: 1.25rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    padding-left: 0.25rem;
+}
+
+.sidebar-logo img {
+    height: 2.5rem;
+    width: 2.5rem;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
+    flex-shrink: 0;
+}
+
+.sidebar-logo-text {
+    font-weight: 600;
+    font-size: 1.15rem;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.sidebar-menu {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden; /* Mencegah horizontal scroll pada sidebar-menu */
+    box-sizing: border-box; /* Memastikan padding tidak menambah lebar */
+}
+
+/* Admin Info di Sidebar */
+/* .sidebar-menu > div:first-child {
+    Hapus CSS ini
+} */
+
+.sidebar-item {
+    padding: 0.75rem 0.65rem 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    margin: 0.25rem 0.5rem;
+    border-radius: 0.5rem;
+    width: calc(100% - 1rem);
+    box-sizing: border-box;
+    min-width: 0;
+}
+
+.sidebar-item:hover {
+    background-color: transparent;
+    color: var(--warning);
+    transform: translateX(3px);
+}
+
+.sidebar-item.active {
+    background-color: transparent;
+    color: var(--warning);
+    font-weight: 600;
+    border-left: 2px solid var(--warning);
+    padding-left: calc(1rem - 2px);
+}
+
+.sidebar-item.active .sidebar-icon {
+    color: var(--warning);
+    transform: none;
+    margin-left: 0;
+}
+
+.sidebar-item:hover .sidebar-icon,
+.sidebar-item:hover .sidebar-text {
+    color: var(--warning);
+}
+
+.sidebar-item.active .sidebar-text {
+    transform: none;
+    font-weight: 600;
+    max-width: 270px !important;
+    padding-right: 0.1rem;
+}
+
+.sidebar-icon {
+    min-width: 1.15rem;
+    height: 1.15rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.sidebar-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all 0.3s ease;
+    font-size: 0.98rem;
+    flex: 1;
+    padding-right: 0.25rem;
+    max-width: 265px !important;
+    letter-spacing: 0;
+    min-width: 0;
+}
+
+.sidebar-badge {
+    background-color: var(--warning);
+    color: var(--text-dark);
+    font-size: 0.7rem;
+    min-width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.2rem;
+    padding: 0 0.3rem;
+    font-weight: 600;
+    box-shadow: 0 0 0 2px var(--primary);
+    flex-shrink: 0;
+    animation: pulse-badge 2s infinite;
+    position: relative;
+    z-index: 5;
+}
+
+@keyframes pulse-badge {
+    0% {
+        box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.8);
+    }
+    70% {
+        box-shadow: 0 0 0 6px rgba(245, 158, 11, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
+    }
+}
+
+/* Tambahkan scrollbar custom untuk sidebar */
+.sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Admin Content Area */
+.admin-content {
+    flex: 1;
+    margin-left: var(--sidebar-width);
+    transition: margin-left 0.3s ease;
+    min-height: 100vh;
+    width: calc(100% - var(--sidebar-width));
+    max-width: calc(100vw - var(--sidebar-width));
+    overflow-x: hidden; /* Mencegah scroll horizontal di konten */
+    position: relative;
+}
+
+/* Admin Navbar */
+.admin-navbar {
+    height: var(--navbar-height);
+    background-color: var(--white);
+    box-shadow: var(--box-shadow);
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: calc(100% - var(--sidebar-width));
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    transition: width 0.3s ease;
+}
+
+.admin-navbar-content {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+}
+
+.admin-navbar-left {
+    display: flex;
+    align-items: center;
+}
+
+.page-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.admin-navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Admin Main Content */
+.admin-main {
+    padding: 1.5rem 2rem;
+    background-color: var(--background);
+    min-height: 100vh;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Fix untuk scrollbar horizontal pada tabel */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+    margin-bottom: 1rem;
+}
+
+/* Memastikan semua tabel tidak menyebabkan overflow */
+table {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Memastikan semua gambar tidak menyebabkan overflow */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Memastikan semua div konten tidak menyebabkan overflow */
+.card, .bg-white, .bg-gray-100, .bg-gray-50 {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Memastikan form tidak menyebabkan overflow */
+form {
+    max-width: 100%;
+}
+
+/* -----------------------------------------------------
+   COMPONENTS - Cards, Buttons, Forms, Tables, etc
+   ----------------------------------------------------- */
+
+/* Cards */
+.card {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.card-header {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-title {
+    font-weight: 600;
+    font-size: 1.125rem;
+    margin: 0;
+    color: var(--text-dark);
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--border-light);
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Tables */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.table th {
+    font-weight: 600;
+    text-align: left;
+    background-color: rgba(0, 0, 0, 0.02);
+    color: var(--text-gray);
+}
+
+.table tr:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    border-radius: 0.375rem;
+    transition: all 0.15s ease;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    font-weight: 500;
+}
+
+.btn-sm {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+}
+
+/* Button Variants */
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-secondary {
+    background-color: #6b7280;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #4b5563;
+}
+
+.btn-success {
+    background-color: #10b981 !important;
+    color: white !important;
+}
+
+.btn-success:hover {
+    background-color: #059669 !important;
+}
+
+.btn-danger {
+    background-color: #ef4444 !important;
+    color: white !important;
+}
+
+.btn-danger:hover {
+    background-color: #dc2626 !important;
+}
+
+.btn-warning {
+    background-color: #f59e0b !important;
+    color: white !important;
+}
+
+.btn-warning:hover {
+    background-color: #d97706 !important;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.625rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border: 1px solid var(--border-light);
+    border-radius: 0.375rem;
+    transition: border-color 0.15s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+}
+
+.form-select {
+    width: 100%;
+    padding: 0.625rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border: 1px solid var(--border-light);
+    border-radius: 0.375rem;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+}
+
+/* Alerts */
+.alert {
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+    border-left: 4px solid;
+}
+
+.alert-success {
+    background-color: #ecfdf5;
+    border-color: #10b981;
+    color: #065f46;
+}
+
+.alert-danger {
+    background-color: #fef2f2;
+    border-color: #ef4444;
+    color: #991b1b;
+}
+
+.alert-warning {
+    background-color: #fffbeb;
+    border-color: #f59e0b;
+    color: #92400e;
+}
+
+.alert-info {
+    background-color: #eff6ff;
+    border-color: #3b82f6;
+    color: #1e40af;
+}
+
+/* Badges */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.badge-primary {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.badge-success {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.badge-warning {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.badge-danger {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+/* Status Badges untuk peminjaman */
+.status-pending {
+    background-color: #F59E0B;
+    color: white;
+    border: 1px solid #D97706;
+}
+
+.status-approved {
+    background-color: #3B82F6;
+    color: white;
+    border: 1px solid #2563EB;
+}
+
+.status-borrowed {
+    background-color: #8B5CF6;
+    color: white;
+    border: 1px solid #7C3AED;
+}
+
+.status-rejected {
+    background-color: #EF4444;
+    color: white;
+    border: 1px solid #DC2626;
+}
+
+.status-pending-return {
+    background-color: #FDB813;
+    color: white;
+    border: 1px solid #F59E0B;
+}
+
+.status-completed {
+    background-color: #10B981;
+    color: white;
+    border: 1px solid #059669;
+}
+
+.status-late-return {
+    background-color: #F44336;
+    color: white;
+    border: 1px solid #E53935;
+}
+
+.status-cancelled {
+    background-color: #6B7280;
+    color: white;
+    border: 1px solid #4B5563;
+}
+
+.status-dipinjam {
+    background-color: #C026D3;
+    color: white;
+    border: 1px solid #A21CAF;
+}
+
+.status-dikembalikan {
+    background-color: #14B8A6;
+    color: white;
+    border: 1px solid #0D9488;
+}
+
+/* -----------------------------------------------------
+   RESPONSIVE
+   ----------------------------------------------------- */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        box-shadow: none;
+        width: 85%; /* Lebar sidebar di mobile dibuat lebih lebar */
+        max-width: 340px; /* Menyesuaikan max-width mobile dari 320px menjadi 340px */
+    }
+    
+    .sidebar.show {
+        transform: translateX(0);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .admin-content {
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    /* Tambahkan tombol hamburger menu yang tetap terlihat */
+    .hamburger-menu {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        z-index: 200;
+        background-color: var(--primary);
+        color: white;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        border: none;
+    }
+    
+    .hamburger-menu:hover {
+        background-color: var(--primary-dark);
+    }
+}
+
+/* Ketika sidebar diciutkan */
+body.sidebar-collapsed .modal {
+    left: var(--sidebar-width-collapsed);
+    width: calc(100% - var(--sidebar-width-collapsed));
+}
+
+/* -----------------------------------------------------
+   UTILITIES
+   ----------------------------------------------------- */
+[x-cloak] {
+    display: none !important;
+}
+
+/* Display & Flex */
+.flex { display: flex; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.justify-center { justify-content: center; }
+.flex-col { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-1 { flex: 1; }
+
+/* Spacing */
+.p-4 { padding: 1rem; }
+.px-4 { padding-left: 1rem; padding-right: 1rem; }
+.py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+.m-2 { margin: 0.5rem; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+.mt-4 { margin-top: 1rem; }
+.mb-4 { margin-bottom: 1rem; }
+.gap-2 { gap: 0.5rem; }
+.gap-4 { gap: 1rem; }
+
+/* Grid */
+.grid { display: grid; }
+.grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+.grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+@media (min-width: 640px) {
+    .sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 768px) {
+    .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1024px) {
+    .lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+/* Visibility */
+.hidden { display: none; }
+.block { display: block; }
+.invisible { visibility: hidden; }
+.visible { visibility: visible; }
+
+/* Text */
+.text-sm { font-size: 0.875rem; }
+.text-lg { font-size: 1.125rem; }
+.text-center { text-align: center; }
+.font-bold { font-weight: 700; }
+.text-white { color: white; }
+.text-gray-500 { color: #6b7280; }
+.text-gray-700 { color: #374151; }
+.truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Other */
+.rounded { border-radius: 0.25rem; }
+.rounded-full { border-radius: 9999px; }
+.shadow { box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); }
+.cursor-pointer { cursor: pointer; }
+.relative { position: relative; }
+.z-10 { z-index: 10; }
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+
+/* Profile di Sidebar */
+.sidebar-profile {
+    padding: 0.85rem 1.25rem 0.85rem 1rem;
+    margin: 0.15rem 0.5rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+}
+
+/* Tombol Logout Khusus */
+.logout-button {
+    justify-content: flex-start;
+    padding: 0.75rem 1rem;
+}
+
+/* Hapus CSS container untuk logout yang sudah tidak diperlukan */
+/*.sidebar > div:last-child {
+    padding-top: 0;
+    border-top: none;
+}*/
+
+/* -----------------------------------------------------
+   MODAL STYLES
+   ----------------------------------------------------- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1050;
+    left: var(--sidebar-width);
+    top: 0;
+    width: calc(100% - var(--sidebar-width));
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal.show {
+    display: flex;
+    align-items: center; /* Vertikal tengah */
+    justify-content: center; /* Horizontal tengah */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 0;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    position: relative;
+    margin: 0 auto;
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Sembunyikan scrollbar untuk Chrome, Safari, dan Opera */
+.modal-content::-webkit-scrollbar {
+    display: none;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    position: sticky;
+    top: 0;
+    background-color: var(--primary); /* Warna biru UB */
+    z-index: 5;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-title {
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: #ffffff; /* Teks putih untuk header biru */
+}
+
+.modal-body {
+    margin: 0;
+    padding: 1.5rem;
+}
+
+/* Memastikan modal footer selalu di bagian bawah dan tidak menutupi konten */
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    position: relative; /* Mengubah dari sticky atau fixed */
+    bottom: 0;
+    background-color: white;
+    border-top: 1px solid #e5e7eb;
+    width: 100%;
+    z-index: 10;
+    margin-top: 1rem;
+}
+
+/* Modal button specific styles - to prevent overrides */
+.modal-footer .btn-primary {
+    background-color: var(--primary) !important;
+    color: white !important;
+    border: none !important;
+}
+
+.modal-footer .btn-primary:hover {
+    background-color: var(--primary-hover) !important;
+}
+
+.modal-footer .btn-secondary {
+    background-color: #6b7280 !important;
+    color: white !important;
+    border: none !important;
+}
+
+.modal-footer .btn-secondary:hover {
+    background-color: #4b5563 !important;
+}
+
+/* Ensure SweetAlert doesn't override our modal buttons */
+.modal .btn {
+    border-radius: 0.375rem !important;
+    font-weight: 500 !important;
+    padding: 0.625rem 1.25rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.15s ease !important;
+}
+
+.modal .btn:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* -----------------------------------------------------
+   BUTTON STYLES
+   ----------------------------------------------------- */
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.btn-outline {
+    background-color: white;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+}
+
+.btn-outline:hover {
+    background-color: var(--primary);
+    color: white;
+}
+
+.btn-lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.125rem;
+}
+
+/* -----------------------------------------------------
+   STATUS BADGES
+   ----------------------------------------------------- */
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.status-available {
+    background-color: #10b981; /* Hijau */
+    color: white;
+    border: 1px solid #059669;
+}
+
+.status-borrowed {
+    background-color: #6366f1; /* Indigo */
+    color: white;
+    border: 1px solid #4f46e5;
+}
+
+.status-maintenance {
+    background-color: #f59e0b; /* Amber */
+    color: white;
+    border: 1px solid #d97706;
+}
+
+.status-unavailable {
+    background-color: #f43f5e; /* Rose */
+    color: white;
+    border: 1px solid #e11d48;
+}
+
+/* Status peminjaman khusus */
+.status-pending {
+    background-color: #f97316; /* Orange */
+    color: white;
+    border: 1px solid #ea580c;
+}
+
+.status-approved {
+    background-color: #3b82f6; /* Blue */
+    color: white;
+    border: 1px solid #2563eb;
+}
+
+.status-rejected {
+    background-color: #ef4444; /* Red */
+    color: white;
+    border: 1px solid #dc2626;
+}
+
+.status-pending-return {
+    background-color: #eab308; /* Yellow */
+    color: white;
+    border: 1px solid #ca8a04;
+}
+
+.status-completed {
+    background-color: #22c55e; /* Green */
+    color: white;
+    border: 1px solid #16a34a;
+}
+
+.status-late-return {
+    background-color: #be123c; /* Dark Rose/Crimson */
+    color: white;
+    border: 1px solid #9f1239;
+}
+
+.status-cancelled {
+    background-color: #64748b; /* Slate */
+    color: white;
+    border: 1px solid #475569;
+}
+
+.status-dipinjam {
+    background-color: #8b5cf6; /* Purple */
+    color: white;
+    border: 1px solid #7c3aed;
+}
+
+.status-dikembalikan {
+    background-color: #06b6d4; /* Cyan */
+    color: white;
+    border: 1px solid #0891b2;
+}
+
+/* -----------------------------------------------------
+   FORM CONTROLS
+   ----------------------------------------------------- */
+.form-control {
+    width: 100%;
+    padding: 0.625rem 0.75rem;
+    border: 1px solid var(--border-light);
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+    border-color: var(--primary-light);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+}
+
+.form-error {
+    color: var(--danger);
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+/* Search container dan spinner */
+.search-container {
+    position: relative;
+}
+
+.search-spinner {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-top: 2px solid var(--primary);
+    border-radius: 50%;
+    display: none;
+    transition: all 0.3s ease;
+}
+
+.search-spinner.show {
+    display: block;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: translateY(-50%) rotate(0deg); }
+    100% { transform: translateY(-50%) rotate(360deg); }
+}
+
+/* Export Button Styles */
+.export-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.65rem 1rem;
+    color: white !important;
+    font-weight: 500;
+    font-size: 0.95rem;
+    border-radius: 0.375rem;
+    transition: all 0.15s ease-in-out;
+    text-align: center;
+    width: 100%;
+    min-width: 130px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: none;
+    cursor: pointer;
+}
+
+.export-button:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.12);
+    transform: translateY(-1px);
+}
+
+.export-button:focus {
+    outline: 2px solid white;
+    outline-offset: 2px;
+}
+
+.export-button i {
+    flex-shrink: 0;
+    display: inline-block !important;
+    width: auto !important;
+    height: auto !important;
+}
+
+.export-button span {
+    flex-grow: 1;
+    text-align: center;
+}
+
+/* -----------------------------------------------------
+   TOAST NOTIFICATION STYLES
+   ----------------------------------------------------- */
+.colored-toast {
+    background-color: white !important;
+    border-radius: 1rem !important;
+    padding: 1rem !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+.colored-toast .swal2-title {
+    color: #1a202c !important;
+    font-size: 0.875rem !important;
+    margin-left: 0.5rem !important;
+}
+
+.colored-toast .swal2-icon {
+    margin: 0 0.75rem 0 0 !important;
+    padding: 0 !important;
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    border: none !important;
+}
+
+.colored-toast .swal2-icon-content {
+    font-size: 1rem !important;
+}
+
+.colored-toast .swal2-success {
+    border: 0.15em solid #0F4C81 !important;
+    color: #0F4C81 !important;
+}
+
+.colored-toast .swal2-success-ring {
+    border: 0.15em solid #0F4C81 !important;
+}
+
+.colored-toast .swal2-success-line-tip,
+.colored-toast .swal2-success-line-long {
+    background-color: #0F4C81 !important;
+}
+
+.colored-toast .swal2-error {
+    border: 0.15em solid #dc2626 !important;
+    color: #dc2626 !important;
+}
+
+.colored-toast .swal2-info {
+    border: 0.15em solid #0F4C81 !important;
+    color: #0F4C81 !important;
+}
+
+.colored-toast .swal2-warning {
+    border: 0.15em solid #f59e0b !important;
+    color: #f59e0b !important;
+}
+
+.colored-toast .swal2-question {
+    border: 0.15em solid #0F4C81 !important;
+    color: #0F4C81 !important;
+}
+
+.swal2-icon-custom {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.swal2-icon-custom .swal2-icon-content {
+    font-size: 1.25rem !important;
+    font-weight: bold !important;
+}
+
+/* Custom select styling untuk dropdown */
+select.border-\[var\(--primary\)\] {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+}
+
+select.bg-\[var\(--primary\)\] {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+}
+
+/* Sweetalert styles override - make more specific to avoid conflicts */
+body > .swal2-container .swal2-confirm {
+    background-color: var(--primary) !important;
+    color: white !important;
+    box-shadow: 0 2px 6px rgba(15, 76, 129, 0.4) !important;
+}
+
+body > .swal2-container .swal2-confirm:focus {
+    box-shadow: 0 0 0 3px rgba(15, 76, 129, 0.5) !important;
+}
+
+body > .swal2-container .swal2-cancel {
+    background-color: var(--danger) !important;
+    color: white !important;
+    box-shadow: 0 2px 6px rgba(239, 68, 68, 0.4) !important;
+}
+
+body > .swal2-container .swal2-cancel:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.5) !important;
+}
+
+/* Make toast icons larger */
+.colored-toast .swal2-icon {
+    width: 2rem !important;
+    height: 2rem !important;
+}
+
+.colored-toast .swal2-icon-content {
+    font-size: 1.5rem !important;
+}
+
+/* Fix dialog popup positioning and shadows */
+.swal2-popup {
+    border-radius: 1rem !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Ensure Lucide icons in SweetAlert are properly aligned */
+[data-lucide] {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+/* Memastikan tabel responsive di semua halaman */
+.overflow-x-auto {
+    overflow-x: auto;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Fix untuk elemen Tailwind yang mungkin menyebabkan overflow */
+.container, .mx-auto, .px-4, .px-6, .p-4, .p-6, .rounded-lg, 
+.bg-white, .shadow-md, .shadow-lg {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Wrapper khusus untuk konten tabel */
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Fix untuk elemen modal yang mungkin melebihi lebar layar */
+.modal, .modal-content {
+    max-width: 100vw;
+    box-sizing: border-box;
+}
+
+/* Fix untuk teks yang panjang dan mungkin menyebabkan overflow */
+.truncate-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+@media (max-width: 768px) {
+    .modal {
+        left: 0;
+        width: 100%;
+    }
+}
+
+/* Gaya khusus untuk modal di halaman manajemen-barang */
+#addItemModal.modal.show,
+#editItemModal.modal.show {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+}
+
+#addItemModal .modal-content,
+#editItemModal .modal-content {
+    width: 450px;
+    max-width: 450px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 0 auto;
+    animation: fadeIn 0.3s;
+    transform: none;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+#addItemModal .modal-body,
+#editItemModal .modal-body {
+    padding: 1.25rem;
+}
+
+#addItemModal .form-group,
+#editItemModal .form-group {
+    margin-bottom: 1rem;
+}
+
+/* Kembalikan nilai padding untuk modal-header dan modal-footer secara umum */
+.modal-header {
+    padding: 1rem 1.5rem;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-footer {
+    padding: 1rem 1.5rem;
+}
+
+#addItemModal.modal,
+#editItemModal.modal {
+    /* Mengatur ulang posisi modal agar menggunakan seluruh layar, bukan hanya area konten */
+    left: 0;
+    width: 100%;
+}
+
+/* Styles untuk preview gambar */
+#image_preview, 
+#edit_image_preview,
+#current_image {
+    display: none;
+    background-color: #f9fafb;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    border: 1px dashed #d1d5db;
+    margin-top: 0.75rem;
+    margin-bottom: 3rem; /* Tambahkan margin bottom yang lebih besar */
+}
+
+#image_preview img, 
+#edit_image_preview img,
+#current_image img {
+    max-width: 100%;
+    max-height: 200px;
+    object-fit: contain;
+    margin: 0 auto;
+    display: block;
+    border-radius: 0.375rem;
+}
+
+#current_image {
+    display: block;
+}
+
+/* Menghilangkan scrollbar tapi tetap bisa scroll */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+@media (max-height: 700px) {
+    .modal-content {
+        max-height: 85vh !important;
+    }
+} 

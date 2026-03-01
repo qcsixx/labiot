@@ -1,0 +1,364 @@
+/* Dashboard CSS untuk Lab IoT Vokasi UB */
+
+/* Utility classes */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Maximum height untuk berbagai bagian */
+.max-h-320 {
+    max-height: 320px;
+}
+
+/* Perbaikan tampilan gambar barang */
+.item-image {
+    background-color: #f5f5f5 !important; /* Warna abu-abu yang lebih cerah */
+    border-radius: 8px 8px 0 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.item-image img {
+    max-height: 90% !important; 
+    max-width: 90% !important;
+    object-fit: contain !important;
+    mix-blend-mode: multiply !important; /* Menghilangkan background putih pada gambar PNG */
+    image-rendering: -webkit-optimize-contrast !important; /* Meningkatkan ketajaman gambar */
+    image-rendering: crisp-edges !important;
+    padding: 0.5rem !important;
+    transition: transform 0.3s ease !important;
+}
+
+.item-image img:hover {
+    transform: scale(1.05) !important;
+}
+
+/* Status badges styling - umum untuk dashboard */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.375rem 0.5rem;
+    font-size: 0.65rem;
+    border-radius: 9999px;
+    margin-left: 0.5rem;
+    line-height: 1;
+}
+
+/* Alerts untuk dashboard */
+.alert {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    border-left: 4px solid;
+}
+
+.alert-success {
+    background-color: #ecfdf5 !important;
+    border-color: #10b981 !important;
+    color: #065f46 !important;
+}
+
+.alert-danger {
+    background-color: #fef2f2 !important;
+    border-color: #ef4444 !important;
+    color: #991b1b !important;
+}
+
+.alert-warning {
+    background-color: #fffbeb !important;
+    border-color: #f59e0b !important;
+    color: #92400e !important;
+}
+
+.alert-info {
+    background-color: #eff6ff !important;
+    border-color: #3b82f6 !important;
+    color: #1e40af !important;
+}
+
+/* Notifikasi styling berdasarkan tipe */
+.notification-item {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin-bottom: 0.75rem;
+    position: relative;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.notification-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Warna notifikasi berdasarkan tipe */
+/* Info/Dipinjam: Biru */
+.notification-info {
+    background-color: #EFF6FF !important;
+    border: 1px solid #BFDBFE !important;
+}
+
+/* Success/Disetujui dan diambil: Hijau */
+.notification-success {
+    background-color: #ECFDF5 !important;
+    border: 1px solid #A7F3D0 !important;
+}
+
+/* Warning/Pending: Kuning */
+.notification-warning, .notification-pending {
+    background-color: #FFFBEB !important;
+    border: 1px solid #FDE68A !important;
+}
+
+/* Error/Terlambat: Merah */
+.notification-error {
+    background-color: #FEF2F2 !important;
+    border: 1px solid #FECACA !important;
+}
+
+/* Text warna untuk notifikasi */
+/* Info/Dipinjam: Biru */
+.text-notification-info {
+    color: #1E40AF !important;
+}
+
+/* Success/Disetujui dan diambil: Hijau */
+.text-notification-success {
+    color: #065F46 !important;
+}
+
+/* Warning/Pending: Kuning */
+.text-notification-warning, .text-notification-pending {
+    color: #92400E !important;
+}
+
+/* Error/Terlambat: Merah */
+.text-notification-error {
+    color: #991B1B !important;
+}
+
+/* Badge warna untuk notifikasi */
+/* Info/Dipinjam: Biru */
+.badge-notification-info {
+    background-color: #DBEAFE !important;
+    color: #1E40AF !important;
+}
+
+/* Success/Disetujui dan diambil: Hijau */
+.badge-notification-success {
+    background-color: #D1FAE5 !important;
+    color: #065F46 !important;
+}
+
+/* Warning/Pending: Kuning */
+.badge-notification-warning, .badge-notification-pending {
+    background-color: #FEF3C7 !important;
+    color: #92400E !important;
+}
+
+/* Error/Terlambat: Merah */
+.badge-notification-error {
+    background-color: #FEE2E2 !important;
+    color: #991B1B !important;
+}
+
+/* Custom Animations umum */
+.text-2xs {
+    font-size: 0.65rem;
+    line-height: 0.85rem;
+}
+
+/* Welcome section styling */
+.dashboard-welcome {
+    transition: all 0.3s ease;
+}
+
+.dashboard-welcome:hover {
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Megaphone animation */
+@keyframes megaphone-shake {
+    0%, 100% {
+        transform: rotate(0) scale(1);
+    }
+    25% {
+        transform: rotate(-5deg) scale(1.05);
+    }
+    75% {
+        transform: rotate(5deg) scale(1.05);
+    }
+}
+
+@keyframes sound-wave {
+    0% {
+        transform: scale(1);
+        opacity: 0.4;
+    }
+    50% {
+        opacity: 0.2;
+    }
+    100% {
+        transform: scale(1.3);
+        opacity: 0;
+    }
+}
+
+.megaphone-animation {
+    animation: megaphone-shake 1.5s ease-in-out infinite;
+    transform-origin: center;
+}
+
+.pulse-animation {
+    animation: sound-wave 1.5s ease-out infinite;
+}
+
+/* Fab menu classes */
+.fab {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.fab-button {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: #0F4C81;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 10px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.fab-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.fab-menu {
+    position: absolute;
+    bottom: calc(100% + 0.5rem);
+    right: 0;
+    width: 220px;
+    padding: 0.75rem;
+    background-color: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.fab-menu.show {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fab-item {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    color: #1f2937;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+}
+
+.fab-item:hover {
+    transform: translateX(-5px);
+    background-color: #0F4C81;
+    color: white;
+}
+
+/* Color classes untuk konsistensi */
+.bg-primary {
+    background-color: #0F4D92;
+}
+
+.text-primary {
+    color: #0F4D92;
+}
+
+.hover\:bg-primary-dark:hover {
+    background-color: #0A3B73;
+}
+
+.hover\:text-primary-dark:hover {
+    color: #0A3B73;
+}
+
+/* Line clamp untuk truncate text */
+.line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    overflow: hidden;
+}
+
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Tambahan class dari inline style */
+.borrow-item:hover .tracking-btn {
+    transform: translateX(3px);
+}
+
+@keyframes pulse-short {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+.animate-pulse-short {
+    animation: pulse-short 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Badge status */
+.badge-status-borrowed {
+    background-color: #DBEAFE !important; /* blue-100 */
+    color: #1E40AF !important; /* blue-800 */
+}
+
+.badge-status-overdue {
+    background-color: #FEE2E2 !important; /* red-100 */
+    color: #991B1B !important; /* red-800 */
+}
+
+.icon-status-borrowed {
+    color: #3B82F6 !important; /* blue-500 */
+}
+
+.icon-status-overdue {
+    color: #EF4444 !important; /* red-500 */
+}
+
+/* Info: Biru */ 

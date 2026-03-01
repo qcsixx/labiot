@@ -1,0 +1,689 @@
+/**
+ * USER MAIN CSS
+ * File CSS utama untuk semua halaman user
+ */
+
+/* -----------------------------------------------------
+   VARIABLES
+   ----------------------------------------------------- */
+:root {
+    --primary: #0F4C81;
+    --primary-hover: #0d4373;
+    --primary-dark: #0c3d6a;
+    --primary-light: #2c7ac0;
+    --ub-yellow: #FDB813;
+    --ub-yellow-hover: #f0a700;
+    --background: #f8fafc;
+    --white: #ffffff;
+    --text-dark: #1f2937;
+    --text-gray: #4b5563;
+    --text-light: #9ca3af;
+    --border-light: #e5e7eb;
+    --border-radius: 0.5rem;
+    --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --box-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --box-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --transition: all 0.2s ease;
+    --navbar-height: 4rem;
+    --navbar-height-mobile: 3.5rem;
+}
+
+/* -----------------------------------------------------
+   BASE
+   ----------------------------------------------------- */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--background);
+    color: var(--text-dark);
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* Sembunyikan scrollbar tetapi tetap bisa scroll */
+html, body {
+    /* Untuk Firefox */
+    scrollbar-width: none;
+    
+    /* Untuk IE dan Edge */
+    -ms-overflow-style: none;
+}
+
+/* Untuk Chrome, Safari, dan Opera */
+::-webkit-scrollbar,
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    background: transparent;
+}
+
+/* -----------------------------------------------------
+   LAYOUT - Navbar, Container, Footer
+   ----------------------------------------------------- */
+.container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.navbar {
+    background-color: var(--primary);
+    color: var(--white);
+    box-shadow: var(--box-shadow);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    height: var(--navbar-height);
+    display: flex;
+    align-items: center;
+}
+
+.navbar > .container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-left: 1rem;
+}
+
+.navbar-brand img {
+    height: 2.5rem;
+    width: auto;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.navbar-brand span {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--white);
+}
+
+.navbar-nav {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding-right: 1rem;
+}
+
+.nav-link {
+    color: var(--white);
+    font-weight: 500;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: var(--ub-yellow);
+    transform: scale(1.1);
+}
+
+.nav-link.active {
+    color: var(--ub-yellow);
+    font-weight: 600;
+    transform: scale(1.1);
+}
+
+main {
+    flex: 1 0 auto;
+    padding-top: calc(var(--navbar-height) + 1rem);
+    padding-bottom: 6rem;
+    background-color: var(--background);
+    width: 100%;
+    min-height: calc(100vh - var(--navbar-height) - 6rem);
+    position: relative;
+    z-index: 1;
+}
+
+footer {
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 0;
+    margin-top: auto;
+    box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    position: relative;
+    z-index: 40;
+    bottom: 0;
+    margin-top: 1rem;
+}
+
+main > .container {
+    margin-bottom: 4rem;
+}
+
+/* -----------------------------------------------------
+   COMPONENTS - Cards, Buttons, Forms, Tables, etc
+   ----------------------------------------------------- */
+
+/* Cards */
+.general-card {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.general-card:hover {
+    box-shadow: var(--box-shadow-md);
+}
+
+.general-card-header {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.general-card-body {
+    padding: 1.5rem;
+}
+
+.general-card-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--border-light);
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    padding: 0.625rem 1.25rem;
+    border-radius: 0.375rem;
+    transition: all 0.15s ease;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-sm {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+}
+
+.btn-lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.125rem;
+}
+
+/* Tables */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.table th {
+    font-weight: 600;
+    text-align: left;
+    background-color: rgba(0, 0, 0, 0.02);
+    color: var(--text-gray);
+}
+
+.table tr:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-gray);
+    font-size: 0.875rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.625rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border: 1px solid var(--border-light);
+    border-radius: 0.375rem;
+    transition: border-color 0.15s ease-in-out;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 0.2rem rgba(15, 76, 129, 0.25);
+}
+
+/* Modal */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease;
+    overflow-y: auto;
+    padding: 2rem 0;
+}
+
+.modal-backdrop.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    background-color: white;
+    border-radius: var(--border-radius);
+    width: 95%;
+    max-width: 500px;
+    max-height: calc(100vh - 120px); /* Pastikan selalu ada ruang dari navbar dan footer */
+    box-shadow: var(--box-shadow-lg);
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+    margin: auto; /* Pastikan di tengah secara horizontal */
+    position: relative; /* Memastikan posisi independen */
+    overflow-y: auto; /* Tambahkan scroll pada modal jika konten terlalu panjang */
+}
+
+.modal.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.modal-header {
+    padding: 1.25rem;
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.modal-title {
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin: 0;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-footer {
+    padding: 1.25rem;
+    border-top: 1px solid var(--border-light);
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+}
+
+/* -----------------------------------------------------
+   TOAST NOTIFICATION STYLING
+   ----------------------------------------------------- */
+.swal2-container.swal2-top-end {
+    top: 67px !important; /* Posisi tepat di bawah navbar */
+    right: 20px !important;
+    z-index: 9999 !important; /* Pastikan di atas konten lain */
+    position: fixed !important; /* Tetap di posisi yang sama meskipun di-scroll */
+}
+
+/* Pastikan toast tidak menutupi navbar */
+.swal2-container.swal2-top-end.swal2-backdrop-show {
+    align-items: flex-start !important; 
+}
+
+/* Styling untuk Toast */
+.colored-toast {
+    background-color: white !important;
+    border-radius: 1rem !important;
+    padding: 1rem !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+.colored-toast .swal2-title {
+    color: #1a202c !important;
+    font-size: 0.875rem !important;
+    margin-left: 0.5rem !important;
+    display: flex !important;
+    align-items: center !important;
+    font-weight: 500 !important;
+}
+
+.colored-toast .swal2-icon {
+    margin: 0 0.75rem 0 0 !important;
+    padding: 0 !important;
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+    border: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.colored-toast .swal2-icon-content {
+    font-size: 1.25rem !important;
+    font-weight: bold !important;
+}
+
+.colored-toast .swal2-success {
+    background-color: rgba(34, 197, 94, 0.15) !important;
+    color: #22c55e !important;
+    border-radius: 50% !important;
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.colored-toast .swal2-success-ring {
+    border: none !important;
+    background-color: transparent !important;
+}
+
+.colored-toast .swal2-success-line-tip,
+.colored-toast .swal2-success-line-long {
+    background-color: #22c55e !important;
+    height: 0.15rem !important;
+}
+
+.colored-toast .swal2-error {
+    background-color: rgba(239, 68, 68, 0.15) !important;
+    color: #ef4444 !important;
+    border-radius: 50% !important;
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.colored-toast .swal2-error-x {
+    height: 0.15rem !important;
+}
+
+.colored-toast .swal2-info {
+    background-color: rgba(59, 130, 246, 0.15) !important;
+    color: #3b82f6 !important;
+    border-radius: 50% !important;
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.colored-toast .swal2-warning {
+    background-color: rgba(245, 158, 11, 0.15) !important;
+    color: #f59e0b !important;
+    border-radius: 50% !important;
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.colored-toast .swal2-question {
+    background-color: rgba(15, 76, 129, 0.15) !important;
+    color: #0F4C81 !important;
+    border-radius: 50% !important;
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.swal2-icon-custom {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.swal2-icon-custom .swal2-icon-content {
+    font-size: 1.25rem !important;
+    font-weight: bold !important;
+}
+
+.swal2-container.swal2-center > .swal2-popup {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: center;
+    justify-self: center;
+}
+
+/* -----------------------------------------------------
+   RESPONSIVE
+   ----------------------------------------------------- */
+@media (max-width: 768px) {
+    .navbar-nav {
+        display: none;
+    }
+    
+    .navbar > .container {
+        justify-content: space-between;
+    }
+    
+    .navbar-brand img {
+        height: 2rem;
+    }
+    
+    .navbar-brand span {
+        font-size: 1.125rem;
+    }
+    
+    .navbar {
+        height: var(--navbar-height-mobile);
+    }
+    
+    main {
+        padding-top: calc(var(--navbar-height-mobile) + 1rem);
+    }
+    
+    .container {
+        padding: 0 1rem;
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-menu-button {
+        display: none;
+    }
+}
+
+/* -----------------------------------------------------
+   UTILITIES
+   ----------------------------------------------------- */
+[x-cloak] { 
+    display: none !important; 
+}
+
+/* Grid */
+.grid {
+    display: grid;
+}
+
+.grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
+.gap-4 { gap: 1rem; }
+
+/* Media queries for responsive grid */
+@media (min-width: 640px) {
+    .sm\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 768px) {
+    .md\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .md\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .md\:block { display: block; }
+    .md\:hidden { display: none; }
+    .md\:flex { display: flex; }
+}
+
+@media (min-width: 1024px) {
+    .lg\:grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Spacing */
+.mt-2 { margin-top: 0.5rem; }
+.mt-4 { margin-top: 1rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-4 { margin-bottom: 1rem; }
+.ml-2 { margin-left: 0.5rem; }
+.mr-2 { margin-right: 0.5rem; }
+.mr-3 { margin-right: 0.75rem; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+.p-4 { padding: 1rem; }
+.px-4 { padding-left: 1rem; padding-right: 1rem; }
+.py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+.py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+
+/* Text */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-xs { font-size: 0.75rem; }
+.text-sm { font-size: 0.875rem; }
+.text-lg { font-size: 1.125rem; }
+.text-xl { font-size: 1.25rem; }
+.font-bold { font-weight: 700; }
+.text-gray-300 { color: #d1d5db; }
+.text-gray-700 { color: #374151; }
+.text-white { color: white; }
+
+/* Display & Position */
+.flex { display: flex; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.justify-center { justify-content: center; }
+.hidden { display: none; }
+.fixed { position: fixed; }
+.top-0 { top: 0; }
+.left-0 { left: 0; }
+.right-0 { right: 0; }
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+
+/* Other */
+.truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
+.shadow { box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); }
+.shadow-md { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
+.rounded { border-radius: 0.25rem; }
+.rounded-full { border-radius: 9999px; } 
+
+.navbar-profile {
+    position: relative;
+}
+
+.profile-dropdown {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: var(--box-shadow-lg);
+    overflow: hidden;
+    margin-top: 0.5rem;
+}
+
+.profile-dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    color: var(--text-dark);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.profile-dropdown-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.mobile-menu {
+    position: absolute;
+    top: var(--navbar-height);
+    left: 0;
+    right: 0;
+    background-color: var(--primary);
+    box-shadow: var(--box-shadow-md);
+    z-index: 20;
+}
+
+.mobile-menu-item {
+    color: var(--white);
+    padding: 0.75rem 1rem;
+    display: block;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.mobile-menu-item:hover {
+    color: var(--ub-yellow);
+    transform: scale(1.05);
+}
+
+.mobile-menu-item.active {
+    color: var(--ub-yellow);
+    font-weight: 600;
+    transform: scale(1.05);
+}
+
+/* Clearfix untuk memastikan tidak ada elemen yang menembus footer */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+} 

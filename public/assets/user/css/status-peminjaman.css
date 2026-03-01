@@ -1,0 +1,810 @@
+/**
+ * CSS UNTUK STATUS PEMINJAMAN
+ * Terakhir diperbarui: Sistem peminjaman terbaru
+ */
+
+/* Progress Bar - Lebih kompak */
+.progress-bar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1rem 0; /* Diperkecil dari 1.5rem */
+    position: relative;
+    padding: 15px 10px; /* Diperkecil dari 25px 15px */
+    background-color: #f8fafc;
+    border-radius: 12px;
+}
+
+.progress-bar-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 20%;
+}
+
+.step-line {
+    position: absolute;
+    height: 3px;
+    background-color: #e2e8f0;
+    width: 100%;
+    left: -50%;
+    top: 18px;
+    z-index: 1;
+}
+
+.progress-bar-step:first-child .step-line {
+    display: none;
+}
+
+.step-line.completed {
+    background-color: #FDB813;
+}
+
+.step-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 12px;
+    background-color: #e2e8f0;
+    color: #64748b;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+    border: 2px solid white;
+    cursor: default;
+}
+
+.step-circle.completed {
+    background-color: var(--primary);
+    color: white;
+}
+
+.step-circle.active {
+    background-color: var(--primary);
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 0 0 3px rgba(15, 76, 129, 0.2);
+}
+
+.step-circle.overdue {
+    background-color: #ef4444;
+    color: white;
+}
+
+.step-circle.success {
+    background-color: #34a853;
+    color: white;
+}
+
+/* Kompak Card Content */
+.borrow-card .card-content {
+    padding: 1.25rem; /* Diperkecil dari 1.5rem */
+}
+
+/* Borrow Cards */
+.borrow-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+    background: white;
+    position: relative;
+    border: 1px solid #e5e7eb;
+}
+
+.borrow-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.borrow-card .card-header {
+    padding: 1rem;
+    background: var(--primary);
+    color: white;
+}
+
+.borrow-card .card-footer {
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid #e5e7eb;
+    padding: 1rem;
+}
+
+/* Badge Deadline Hari Ini - Gaya sesuai gambar */
+.custom-deadline-badge {
+    display: inline-flex;
+    align-items: center;
+    background-color: #FDB813;
+    color: #333;
+    font-weight: bold;
+    padding: 0.35rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    line-height: 1;
+    animation: badge-pulse 2s infinite;
+}
+
+/* Badge Overdue - Warna merah */
+.custom-overdue-badge {
+    display: inline-flex;
+    align-items: center;
+    background-color: #EF4444;
+    color: white;
+    font-weight: bold;
+    padding: 0.35rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    line-height: 1;
+    animation: badge-red-pulse 2s infinite;
+}
+
+@keyframes badge-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.85; transform: scale(1.05); }
+}
+
+@keyframes badge-red-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.85; transform: scale(1.05); }
+}
+
+/* Status Badge Sizing */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.75rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 0.75rem;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.status-badge:hover {
+    transform: scale(1.05);
+}
+
+/* Item Images */
+.item-image-container {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.item-image-container:hover {
+    transform: scale(1.1);
+}
+
+/* Action Buttons */
+.action-button {
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.action-button:hover {
+    transform: translateY(-2px);
+}
+
+.action-button:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: 0.5s;
+}
+
+.action-button:hover:before {
+    left: 100%;
+}
+
+/* Info Items */
+.info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.info-item i {
+    margin-right: 0.5rem;
+    color: var(--primary);
+}
+
+/* Special Card States */
+.borrow-card.warning {
+    border: 2px solid #FDB813 !important;
+    box-shadow: 0 4px 15px -2px rgba(253, 184, 19, 0.3) !important;
+    animation: attention-seeker 3s infinite !important;
+}
+
+.borrow-card.warning .card-header {
+    background: linear-gradient(to right, #FDB813, #F59E0B) !important;
+}
+
+.borrow-card.warning .card-content {
+    background-color: #fffbeb !important;
+}
+
+.borrow-card.warning .card-footer {
+    background-color: #fffbeb !important;
+    border-top: 1px solid #fef3c7 !important;
+}
+
+.borrow-card.warning:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 10px 20px -5px rgba(253, 184, 19, 0.4) !important;
+}
+
+/* Override style untuk overdue */
+.borrow-card.overdue {
+    position: relative;
+    animation: card-red-pulse 2s infinite;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+    border: 1px solid #e5e7eb !important;
+    background-color: white !important;
+}
+
+/* Reset semua style background yang diatur sebelumnya */
+.borrow-card.overdue .card-header {
+    background: var(--primary) !important; /* Kembalikan ke warna biru default */
+}
+
+.borrow-card.overdue .card-content {
+    background-color: white !important;
+}
+
+.borrow-card.overdue .card-footer {
+    background-color: white !important;
+    border-top: 1px solid #e5e7eb !important;
+}
+
+.borrow-card.overdue:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.5) !important;
+}
+
+/* Style untuk pending-return */
+.borrow-card.pending-return {
+    border: 1px solid #e5e7eb;
+    background-color: white;
+}
+
+.borrow-card.pending-return .card-header {
+    background: var(--primary);
+    color: white;
+}
+
+/* Hapus style yang membuat header oranye untuk kartu terlambat */
+.borrow-card.pending-return.late .card-header {
+    background: var(--primary);
+}
+
+/* Animations */
+@keyframes pulse-red {
+    0% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6);
+    }
+    70% {
+        box-shadow: 0 0 0 6px rgba(239, 68, 68, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+    }
+}
+
+/* Tooltips */
+[data-tooltip] {
+    position: relative;
+}
+
+[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+/* Step Labels */
+.step-label {
+    font-size: 11px;
+    font-weight: 500;
+    text-align: center;
+    color: #64748b;
+    white-space: nowrap;
+    margin-top: 2px;
+    position: relative;
+    z-index: 3;
+    width: 100%;
+}
+
+.step-label.active {
+    color: #4285f4;
+    font-weight: 600;
+}
+
+/* Purpose Container */
+.purpose-container {
+    background-color: #f9fafb;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    border-left: 4px solid var(--primary);
+    margin-top: 0.5rem; /* Diperkecil dari 0.75rem */
+    margin-bottom: 0.5rem; /* Diperkecil dari 1rem */
+}
+
+/* Additional Animations */
+.overdue-pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 6px rgba(239, 68, 68, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+    }
+}
+
+@keyframes attention-seeker {
+    0%, 100% {
+        transform: translateY(0);
+        box-shadow: 0 4px 15px -2px rgba(253, 184, 19, 0.3);
+    }
+    5%, 15% {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px -5px rgba(253, 184, 19, 0.5);
+    }
+    10%, 20% {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 17px -3px rgba(253, 184, 19, 0.4);
+    }
+    50% {
+        transform: translateY(0);
+        box-shadow: 0 4px 15px -2px rgba(253, 184, 19, 0.3);
+    }
+    70% {
+        box-shadow: 0 4px 15px -2px rgba(253, 184, 19, 0.3);
+    }
+    80% {
+        box-shadow: 0 8px 20px -5px rgba(253, 184, 19, 0.5);
+    }
+    90% {
+        box-shadow: 0 4px 15px -2px rgba(253, 184, 19, 0.3);
+    }
+}
+
+/* Efek untuk kartu pada hari H (tepat tanggal pengembalian) */
+.borrow-card.today-return {
+    position: relative;
+    animation: card-pulse 2s infinite;
+    box-shadow: 0 0 20px rgba(253, 184, 19, 0.3);
+}
+
+.deadline-text-highlight {
+    color: #FDB813 !important;
+    font-weight: 700 !important;
+    animation: text-pulse 2s infinite !important;
+}
+
+@keyframes card-pulse {
+    0%, 100% {
+        box-shadow: 0 0 12px rgba(253, 184, 19, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(253, 184, 19, 0.5);
+    }
+}
+
+@keyframes card-red-pulse {
+    0%, 100% {
+        box-shadow: 0 0 12px rgba(239, 68, 68, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+    }
+}
+
+@keyframes text-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* Hapus kode lama dari banner oranye */
+.today-return-notification,
+.today-return-icon,
+.today-return-pulse {
+    display: none;
+}
+
+@keyframes today-pulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(255, 87, 34, 0.7);
+    }
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(255, 87, 34, 0);
+    }
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(255, 87, 34, 0);
+    }
+}
+
+@keyframes bell-ring {
+    0%, 100% { transform: rotate(0); }
+    20%, 60% { transform: rotate(-15deg); }
+    40%, 80% { transform: rotate(15deg); }
+}
+
+@keyframes blink-attention {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; background-color: #FB923C; }
+}
+
+/* Pastikan kartu dengan deadline hari ini dan pending-return tetap menggunakan header biru */
+.borrow-card.today-return .card-header,
+.borrow-card.pending-return .card-header,
+.borrow-card.pending-return.late .card-header {
+    background: var(--primary) !important;
+    color: white !important;
+}
+
+/* Modal pelacakan */
+.modal-header {
+    background-color: var(--primary) !important;
+    border-top-left-radius: 0.75rem !important;
+    border-top-right-radius: 0.75rem !important;
+}
+
+.modal-title {
+    color: white;
+    font-weight: 600;
+}
+
+/* Dropzone */
+.dropzone {
+    border: 2px dashed #d1d5db;
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dropzone:hover {
+    border-color: var(--primary);
+    background-color: rgba(15, 76, 129, 0.05);
+}
+
+.dropzone.drag-active {
+    border-color: var(--primary);
+    background-color: rgba(15, 76, 129, 0.1);
+}
+
+/* Image Preview dengan tombol X */
+#image-preview {
+    max-width: 100%;
+    margin-top: 15px;
+}
+
+#image-preview img {
+    width: 100%;
+    max-height: 250px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+#remove-image {
+    transition: all 0.2s ease;
+}
+
+#remove-image:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    transform: scale(1.1);
+}
+
+/* Submit button styling */
+#submit-tracking {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: var(--primary);
+    color: white;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+#submit-tracking:hover {
+    background-color: #0d3f6a;
+}
+
+/* Form input styling */
+.tracking-form-input {
+    width: 100%;
+    border: 1px solid #e2e8f0;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    transition: all 0.2s ease;
+}
+
+.tracking-form-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(15, 76, 129, 0.2);
+}
+
+/* Center button text */
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal styling */
+body.modal-open {
+    overflow: hidden !important;
+    height: 100vh !important;
+    width: 100vw !important;
+    position: fixed !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    top: 0 !important;
+    left: 0 !important;
+}
+
+/* Modal container */
+#tracking-modal {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    display: none; /* Default tersembunyi */
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: opacity 0.3s ease;
+    padding: 20px;
+    backdrop-filter: blur(3px) !important;
+}
+
+/* Ketika modal aktif */
+#tracking-modal.show {
+    display: flex !important;
+    opacity: 1 !important;
+}
+
+/* Ketika modal tersembunyi */
+#tracking-modal.hidden {
+    display: none !important;
+    opacity: 0 !important;
+}
+
+/* Modal content */
+#tracking-modal .modal-content {
+    background-color: white;
+    border-radius: 0.75rem;
+    width: 95%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3) !important;
+    transform: translateY(-20px) scale(0.95);
+    opacity: 0;
+    transition: all 0.3s ease;
+    margin: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+#tracking-modal .modal-content.show {
+    transform: translateY(0) scale(1) !important;
+    opacity: 1 !important;
+}
+
+#tracking-modal.hidden {
+    display: none !important;
+}
+
+#tracking-modal .modal-content::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+/* Reset dari style inline di blade */
+#modal-content {
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#modal-content .p-5 {
+    overflow-y: auto;
+}
+
+/* Untuk memastikan scroll hanya muncul jika konten terlalu panjang */
+.modal-content .overflow-y-auto {
+    max-height: calc(100vh - 280px);
+}
+
+/* Untuk layar kecil */
+@media (max-height: 700px) {
+    #tracking-modal {
+        padding: 10px;
+    }
+
+    #modal-content {
+        max-height: 95vh;
+    }
+}
+
+/* Toast Notification Styling - sesuai dengan admin */
+.swal2-container.swal2-top-end {
+    top: 67px !important; /* Posisi tepat di bawah navbar */
+    right: 20px !important;
+    z-index: 9999 !important; /* Pastikan di atas konten lain */
+    position: fixed !important; /* Tetap di posisi yang sama meskipun di-scroll */
+}
+
+/* Pastikan toast tidak menutupi navbar */
+.swal2-container.swal2-top-end.swal2-backdrop-show {
+    align-items: flex-start !important;
+}
+
+/* Styling untuk Toast */
+.colored-toast {
+    background-color: white !important;
+    border-radius: 1rem !important;
+    padding: 1rem !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+.colored-toast .swal2-title {
+    color: #1a202c !important;
+    font-size: 0.875rem !important;
+    margin-left: 0.5rem !important;
+    display: flex !important;
+    align-items: center !important;
+    font-weight: 500 !important;
+}
+
+.colored-toast .swal2-icon {
+    margin: 0 0.75rem 0 0 !important;
+    padding: 0 !important;
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+    border: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.colored-toast .swal2-icon-content {
+    font-size: 1.25rem !important;
+    font-weight: bold !important;
+}
+
+.colored-toast .swal2-success {
+    background-color: rgba(34, 197, 94, 0.15) !important;
+    color: #22c55e !important;
+    border-radius: 50% !important;
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.colored-toast .swal2-success-ring {
+    border: none !important;
+    background-color: transparent !important;
+}
+
+.colored-toast .swal2-success-line-tip,
+.colored-toast .swal2-success-line-long {
+    background-color: #22c55e !important;
+    height: 0.15rem !important;
+}
+
+.colored-toast .swal2-error {
+    background-color: rgba(239, 68, 68, 0.15) !important;
+    color: #ef4444 !important;
+    border-radius: 50% !important;
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.colored-toast .swal2-error-x {
+    height: 0.15rem !important;
+}
+
+.colored-toast .swal2-info {
+    background-color: rgba(59, 130, 246, 0.15) !important;
+    color: #3b82f6 !important;
+    border-radius: 50% !important;
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.colored-toast .swal2-warning {
+    background-color: rgba(245, 158, 11, 0.15) !important;
+    color: #f59e0b !important;
+    border-radius: 50% !important;
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.colored-toast .swal2-question {
+    background-color: rgba(15, 76, 129, 0.15) !important;
+    color: #0F4C81 !important;
+    border-radius: 50% !important;
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.swal2-icon-custom {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.swal2-icon-custom .swal2-icon-content {
+    font-size: 1.25rem !important;
+    font-weight: bold !important;
+}
+
+.swal2-container.swal2-center > .swal2-popup {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: center;
+    justify-self: center;
+}
+
+/* Animasi native dari Animate.css, tidak perlu mendefinisikan ulang */
+/* Hapus definisi lokal dari fadeInRight dan fadeOutRight */
